@@ -61,7 +61,6 @@ TreeSet setMapL;
 TreeSet setMapR;
 LinkedHashMap layoutL = new LinkedHashMap();
 LinkedHashMap layoutR = new LinkedHashMap();
-//GHorzSlider songSlider;
 int timer;
 String songstorage = "/Users/zeeshanlakhani/Documents/Processing/echonest_reduc/data/";
 PrintWriter originals;
@@ -117,14 +116,8 @@ public class UIWindow extends PApplet
     labelnotes2 = new GLabel(this,"*Use sharps (#'s), not flats",(width/2) - (250/2) + 10, 360, 250, 0);
     example = new GLabel(this, "example: C E G A# c e g a#", (width/2) - (250/2) + 15, 400, 250, 0);
 
-    //  songLength = (285231 * 2)/1000;
     downloadSong = new GButton(this,"Play Original Song",width/2 - 85,75,20,20);
     downloadString = new GButton(this,"View Original's Chords",width/2 - 100,118,20,20);
-    //  songSlider = new GHorzSlider(this, 110, 120, songLength , 30);
-    //  songSlider.setLimits(0,0,songLength);
-    //  songSlider.setBorder(2);
-    //  songSlider.setColorScheme(GCScheme.GREY_SCHEME);
-    //  songSlider.setValue(0);
 
     btnEnter = new GButton(this, "Search",(width/2) - (100/2) - 10,270,100,30);
     btnEnter.setColorScheme(GCScheme.GREY_SCHEME);
@@ -132,8 +125,7 @@ public class UIWindow extends PApplet
     filenames = getFiles();
     finSearch = new String[0];
     finny = new HashMap();
-    //println(getFiles());
-    //chords = loadStrings("/Users/zeeshanlakhani/Documents/Processing/text_search_yes/data/testtext.txt");
+
     Beatchords = loadStrings("/Users/zeeshanlakhani/Documents/Processing/text_search_yes/data/mainText_db2.txt");
     IntVals = loadStrings("/Users/zeeshanlakhani/Documents/Processing/echonest_reduc/oneMin_db2.txt");
     chords = new String[Beatchords.length];
@@ -148,21 +140,12 @@ public class UIWindow extends PApplet
       }
     }
 
-    //realChords = loadStrings("/Users/zeeshanlakhani/Documents/Processing/text_search_yes/data/chordText.txt");
-    //println(realChords);
-
     findIt = new SearchKMP();
     leftidx = new int[chords.length];
     rightidx = new int[chords.length];
 
     setMapL = new TreeSet();
     setMapR = new TreeSet();
-    //minim = new Minim(this);
-    //player = minim.loadFile(songstorage + filenames[0] + ".mp3", 2048);
-    //    originals = createWriter("original.pdf");
-    //    originals.print(chords[0]);
-    //    originals.flush(); // Writes the remaining data to the file
-    //    originals.close(); // Finishes the file
   }
 
   synchronized public void draw() {
@@ -177,8 +160,7 @@ public class UIWindow extends PApplet
     }
   }
 
-  public void createWindows(){
-    //G4P.disableAutoDraw();
+  public void createWindows() {
     EndSearch = true;
     try {
       Robot r = new Robot();
@@ -186,22 +168,16 @@ public class UIWindow extends PApplet
     } 
     catch(AWTException e) {
     }
-
-
   }
 
 
-  public void handleButtonEvents(GButton button){
+  public void handleButtonEvents(GButton button) {
     String enteredText = searchF.getText().replaceAll("\\s","");
-    if((button.getText().equals("Search") && !enteredText.equals("")) && (button.eventType == GButton.CLICKED)){
+    if((button.getText().equals("Search") && !enteredText.equals("")) && (button.eventType == GButton.CLICKED)) {
       searchF.setColorScheme(GCScheme.GREY_SCHEME);
       usrSub = stringOutput();
       runSearch();
       timer = second();
-      //      println(finSearch);
-      //      println("\n" + layoutL);
-      //      println("\n" + layoutR);
-      //btnEnter.setVisible(false);
     }
 
     if (button.getText().equals("Play Original Song") && (button.eventType == GButton.CLICKED)) {
@@ -209,7 +185,6 @@ public class UIWindow extends PApplet
     } 
     if (button.getText().equals("View Original's Chords") && (button.eventType == GButton.CLICKED)) {
       open("/Users/zeeshanlakhani/Documents/Processing/text_search_yes/data/output_first chord.pdf");
-
     }
   }
 
@@ -221,32 +196,23 @@ public class UIWindow extends PApplet
       usrSub = stringOutput();
       runSearch();
       timer = second();
-      //println(finSearch);
-      /*println("\n" + layoutL);
-       println("\n" + layoutR);*/
     }
   }
   String stringOutput() {
     String stringtest = searchF.getText();
-    //println (stringtest);
-    //stringtest = stringtest.toUpperCase();
     stringtest = stringtest.replaceAll("\\s","");
 
-    //String[] temp1 = new String[1];
-    //String[] temp2 = new String[1];
     String temp1; 
     String temp2;
 
     String[] stringArry = new String[0];
     for (int i = 0; i < stringtest.length(); i++) {
-      //println(i);
       if (i == stringtest.length() - 1) {
         stringArry = append(stringArry,replacer(Character.toString(stringtest.charAt(i))));
         String check = replacer(Character.toString(stringtest.charAt(i)));
         if (check.equals("error")) {
-          return "error"; 
+          return "error";
         }
-        //counter = 0;
       }
       else {
         if(stringtest.charAt(i+1) == '#') {
@@ -254,7 +220,7 @@ public class UIWindow extends PApplet
           temp2 = Character.toString(stringtest.charAt(i+1));
           stringArry = append(stringArry,replacer(temp1 + temp2));
           if (replacer(temp1 + temp2).equals("error")) {
-            return "error"; 
+            return "error";
           }
           i++;
         }
@@ -262,7 +228,7 @@ public class UIWindow extends PApplet
           stringArry = append(stringArry,replacer(Character.toString(stringtest.charAt(i))));
           String check = replacer(Character.toString(stringtest.charAt(i)));
           if (check.equals("error")) {
-            return "error"; 
+            return "error";
           }
         }
       }
@@ -276,7 +242,7 @@ public class UIWindow extends PApplet
       return symbol;
     }
     else {
-      return "error"; 
+      return "error";
     }
   }
 
@@ -333,7 +299,6 @@ public class UIWindow extends PApplet
         result.append(a[i]);
       }
     }
-    //println(result.toString());
     return result.toString();
   }
 
@@ -358,9 +323,7 @@ public class UIWindow extends PApplet
     else {
       searchfunc(usrSub);
       for (int i = 0; i < chords.length; i++) {
-        //println("\n" + leftidx[i] + " " + ":" + " " + rightidx[i]); 
         if (leftidx[i] == -1 && rightidx[i] == -1) {
-          //println(leftidx[i] + " " + ":" + " " + rightidx[i]);
           continue;
         }
         else if (leftidx[i] == 0) {
@@ -370,7 +333,6 @@ public class UIWindow extends PApplet
           leftRun = append(leftRun,chords[i].substring(0,leftidx[i]));
         }
         else {
-          //println(leftidx[i] + " " + ":" + " " + rightidx[i]);
           leftRun = append(leftRun,chords[i].substring(0,leftidx[i]));
           rightRun = append(rightRun,chords[i].substring(rightidx[i] + 1,chords[i].length()));
         }
@@ -378,10 +340,9 @@ public class UIWindow extends PApplet
 
       if (leftRun.length == 0 && rightRun.length == 0) {
         searchF.setColorScheme(GCScheme.YELLOW_SCHEME);
-        searchF.setText("No Matches. Try Again"); 
+        searchF.setText("No Matches. Try Again");
       }
       else {
-        //println(usrSub);
         layoutL = setMapL.findMapL(leftRun,usrSub);
         layoutR = setMapR.findMapR(rightRun,usrSub);
         createWindows();
@@ -397,7 +358,7 @@ public class UIWindow extends PApplet
   }
 
   void remover() {
-    frame.hide(); 
+    frame.hide();
   }
 }
 
@@ -410,7 +371,6 @@ void setup( ) {
   drawer = new Drawer();
   SearchWindow();
   zoomer = new ZoomPan(this);
-
 }
 
 void SearchWindow() {
@@ -419,11 +379,6 @@ void SearchWindow() {
 }
 
 void Manifest(LinkedHashMap layoutL,LinkedHashMap layoutR,String[] theSongs,String[] rights, String[] lefts) {
-  //  println(layoutL);
-  //  println(layoutR);
-  //  println("Search Results");
-  //  println(theSongs);
-  //  println("Search REsults");
   drawer.setup(layoutL,layoutR,usrSub,theSongs, rights, lefts);
   drawer.Revert();
   realChords = drawer.Xchange(chords);
@@ -433,9 +388,6 @@ void Manifest(LinkedHashMap layoutL,LinkedHashMap layoutR,String[] theSongs,Stri
   frame.setAlwaysOnTop(true);
   uiWindow.hide();
   uiWindow.remover();
-
-
-
 }
 
 void draw() {
@@ -444,352 +396,23 @@ void draw() {
     if (mousePressed == true) {
       drawer.mousePressed();
     }
-    if (keyPressed == true){
+    if (keyPressed == true) {
       camera(width/2.0, height/2.0, (height/2.0) / tan(PI*60.0 / 360.0), width/2, height/2.0, 0, 0, 1, 0);
     }
     else {
-      zoomer.transform();  
+      zoomer.transform();
     }
-    drawer.draw();  
+    drawer.draw();
   }
 }
 
 void mouseMoved() {
   if (keyPressed == true) {
-
   }
   else {
     if (mouseX >= width || mouseY >= height || mouseX <= 0 || mouseY <= 0) {
-      //println("Yeah");
       camera(width/2.0, height/2.0, (height/2.0) / tan(PI*60.0 / 360.0), width/2, height/2.0, 0, 0, 1, 0);
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

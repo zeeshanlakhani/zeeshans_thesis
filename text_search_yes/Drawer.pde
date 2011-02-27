@@ -1,4 +1,4 @@
-class Drawer  {
+class Drawer {
 
   final float S_LENGTH = 0;
   final float S_STRENGTH = 0.0;
@@ -80,12 +80,9 @@ class Drawer  {
     size(1200,600,OPENGL);
     background(200);
     frameRate(25);
-    //    hint(ENABLE_OPENGL_4X_SMOOTH);
-    //    hint(DISABLE_OPENGL_ERROR_REPORT);
   }
 
   void setup(LinkedHashMap layoutL,LinkedHashMap layoutR,String usrSub,String[] sSongs, String[] rights, String[] lefts) {
-    //println(findMap2);
 
     keymap = new HashMap();
     Revert();
@@ -98,18 +95,6 @@ class Drawer  {
     /*LEFT*/
     findMap2 = new LinkedHashMap();
     tMap2 = layoutL;
-    //tMap2 = new LinkedHashMap();
-    //println(tMap2);
-    //    tMap2.put("AA",0);
-    //    tMap2.put("CCCCCCC",1);
-    //    tMap2.put("DDDDD",2);
-    //    tMap2.put("RRR",2);
-    //    tMap2.put("DDD",1);
-    //    tMap2.put("RRRRR",2);
-    //    tMap2.put("RRR*II",3);
-    //    tMap2.put("RARARARARARRRRRRRRRRRRRRRRRRR",4);
-    //    tMap2.put("R1AGSGS",5);
-
 
     Integer[] tempL = new Integer[tMap2.size()];
     tString2 = new String[tMap2.size()];
@@ -119,8 +104,6 @@ class Drawer  {
     arraycopy(tMap2.keySet().toArray(),tStringttt);
     tStringttt = Xchange(tStringttt);
     tString2 = XchangeLeft(tString2);
-
-    //println(tString2);
 
     tMaprray2 = new int[tMap2.size()];
     tMaprray2 = ArrayUtils.toPrimitive(tempL);
@@ -134,21 +117,6 @@ class Drawer  {
     /*RIGHT*/
     findMap = new LinkedHashMap();
     tMap = layoutR;
-    //tMap = new LinkedHashMap();
-    //println(tMap);
-    //    tMap.put("J",1);
-    //    tMap.put("JJJJJJJJJJJJJJ",2);
-    //    tMap.put("BA",3);
-    //    tMap.put("AAAAAAAAAAAAJJJJJJJJLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLT",3);
-    //    tMap.put("TTTTTTTT",2);
-    //    tMap.put("RRRRAQ",2);
-    //    tMap.put("ABBABA",3);
-    //    tMap.put("UUUU",3);
-    //    tMap.put("RRRRR",4);
-    //    tMap.put("RRR*IIIIIIIIIIIIII",4);
-    //    tMap.put("RA",5);
-    //    tMap.put("R1AGSGS",5);
-    //    tMap.put("BBABBABA",2);
 
 
     Integer[] temper = new Integer[tMap.size()];
@@ -157,7 +125,6 @@ class Drawer  {
     arraycopy(tMap.keySet().toArray(),tString);
 
     tString = Xchange(tString);
-    //println(tString);
     tMaprray = new int[tMap.size()];
     tMaprray = ArrayUtils.toPrimitive(temper);
     start_p = new float[tMaprray.length];
@@ -185,7 +152,7 @@ class Drawer  {
         maxDR = createParticleRight(pcle,popR,maxDR);
       }
       for (int pcle = 1; pcle < tMaprray2.length; pcle++) {
-        maxDL = createParticleLeft(pcle,popL,maxDL); 
+        maxDL = createParticleLeft(pcle,popL,maxDL);
       }
       start_p = textSizer(datavis1,tMaprray);
       start_p2 = textSizer(datavis2,tMaprray2);
@@ -205,8 +172,6 @@ class Drawer  {
     else
       nHMAX = max(nHold);
 
-    //maxDelta = maxDR + maxDL;
-    //println(maxDL + "," + maxDR);
     println("Right stream");
     println(tMaprray);
     println("Left Stream");
@@ -215,12 +180,6 @@ class Drawer  {
     println(findMap);
     println("index issue left");
     println(findMap2);
-    //    println("chordsR");
-    //    println(chordsR);
-    //    println("chordsL");
-    //    println(chordsL);
-    //println("strings");
-    //println(tString);
 
     rightV = new int[0];
     rightS = new String[0];
@@ -229,11 +188,8 @@ class Drawer  {
     /****************Right******************/
     for (int i = 0; i < chordsR.length; i++) {
       for (int e = 1; e < tString.length; e++) {
-        //println("yes");
-        //println(chordsR[e]);
         if (chordsR[i].length() >= tString[e].length()) {
           qSearch = Results.starter(chordsR[i].substring(0,tString[e].length()),tString[e]);
-          //println(qSearch + "," + i + "," + songNames[e]);
 
           if (qSearch > -1) {
             println("RIGHT");
@@ -244,14 +200,14 @@ class Drawer  {
               chordsR[i] = chordsR[i].substring(qSearch + tString[e].length());
             }
             else {
-              break; 
+              break;
             }
           }
           else {
             for (int a = e + 1; a < tString.length ; a++) {
               if (tMaprray[a] ==  e) {
                 e = a - 1;
-                break; 
+                break;
               }
             }
           }
@@ -262,29 +218,25 @@ class Drawer  {
     /******************************LEFT***************************/
     for (int i = 0; i < chordsL.length; i++) {
       for (int e = 1; e < tStringttt.length; e++) {
-        //println("yes");
-        //println(chordsR[e]);
         if (chordsL[i].length() >= tStringttt[e].length()) {
           qSearch = Results.starter(chordsL[i].substring(0,tStringttt[e].length()),tStringttt[e]);
-          //println(qSearch + "," + i + "," + songNames[e]);
 
           if (qSearch > -1) {
             println("LEFT");
-            //println(qSearch + "," + tStringttt[e].length() + "," + e + "," + songNames[i]);
             leftV = append(leftV,e);
             leftS = append(leftS,songNames[i]);
             if (chordsL[i].length() > qSearch + tStringttt[e].length() ) {
               chordsL[i] = chordsL[i].substring(qSearch + tStringttt[e].length());
             }
             else {
-              break; 
+              break;
             }
           }
           else {
             for (int a = e + 1; a < tStringttt.length ; a++) {
               if (tMaprray2[a] ==  e) {
                 e = a - 1;
-                break; 
+                break;
               }
             }
           }
@@ -293,7 +245,6 @@ class Drawer  {
     }   
 
     readMe();
-
   }
 
   void draw () {
@@ -321,7 +272,7 @@ class Drawer  {
       }
       if (tMaprray2.length > 1 && vars2 > 0) {
         createParticleLeft(vars2,popL,0);
-      } 
+      }
     }
 
     if ( datavis1.numberOfParticles() > 1 || datavis2.numberOfParticles() > 1) {
@@ -335,15 +286,8 @@ class Drawer  {
 
     translate(-centroidX, -centroidY);
 
-    //println(mouseX + "," + -centroidX);
-    //println(centroidX + "," + "$" + centroidY+ "," + scale);
-    //println(tMaprray2.length + "," + tMaprray.length + "," +  "*" + scale);
-
     drawLeft();
-    drawRight(); 
-
-    //println((maxDL + maxDR) - width);
-
+    drawRight();
   }
 
   void drawRight() {
@@ -361,17 +305,14 @@ class Drawer  {
             usrSub = XchangeS(usrSub); 
             Safe = false;
           }
-          //println(usrSub);
           text(usrSub, runV.position().x() - textWidth(usrSub), runV.position().y());
           stroke(0);
           strokeWeight(3);
           line(runV.position().x() - textWidth(usrSub) + .5,runV.position().y() + textAscent() + .2,runV.position().x() - .5,runV.position().y() + textAscent() + .2);
-
         }
         else {
           textSize(nHold[i]);
           Integer retIT = (Integer)findMap.get(i);
-          //println(i + "," + "*" + retIT);
           runPre = datavis1.getParticle(retIT);
           getMeCol(tMaprray[i]);
 
@@ -397,12 +338,11 @@ class Drawer  {
           line(runPre.position().x(),start_p[i],runV.position().x(),runV.position().y());
           float nadd = textAscent();
 
-          //numbers
           fill(255);
           textAlign(CENTER,CENTER);
           textSize(.5);
           text(i,runPre.position().x(),runV.position().y() + nadd/2);
-          textAlign(LEFT,TOP);   
+          textAlign(LEFT,TOP);
         }
       }
     }
@@ -426,7 +366,6 @@ class Drawer  {
         textSize(nHold[i]);
         node.position().set(nodePre.position().x() + textWidth(tString[i]),nodePre.position().y(),0);
         pTemp.add(node);
-        //distancer(datavis1,nodePre,node);
         makeJoint(datavis1,nodePre,node,S_STRENGTH,S_DAMP,textWidth(tString[i]));
         node_counter++;
       }
@@ -448,7 +387,6 @@ class Drawer  {
             float rest = textAscent();
             textSize(nHold[i]);
             node.position().set(nodePre.position().x() + textWidth(tString[i]),prev.position().y() + rest + 0.1,0);
-            //distancer(datavis1,nodePre,node);
             makeJoint(datavis1,nodePre,node,S_STRENGTH,S_DAMP, textWidth(tString[i]));
             pTemp.remove(pTemp.size() - 1);
             pTemp.add(node);
@@ -456,7 +394,6 @@ class Drawer  {
           else {
             Particle prev = (Particle)(pTemp.get(pTemp.size() - 1));
             Particle up = datavis1.getParticle((Integer)q.get(i));
-            //println((Integer)q.get(i));
             textSize(nHold[(Integer)q.get(i)]);
             float rest = textAscent();
             textSize(nHold[i]);
@@ -466,7 +403,6 @@ class Drawer  {
             else {
               node.position().set(nodePre.position().x() + textWidth(tString[i]),up.position().y() + rest + 0.1,0);
             }
-            //distancer(datavis1,nodePre,node);
             makeJoint(datavis1,nodePre,node,S_STRENGTH,S_DAMP,  textWidth(tString[i]));
             pTemp.removeRange(tMaprray[node_counter + 1],pTemp.size());
             pTemp.add(node);
@@ -494,7 +430,6 @@ class Drawer  {
 
 
   void drawLeft() {
-    //scale(-1,1);
     textAlign(RIGHT,TOP);
     strokeWeight(1);
     if (vars2 < datavis2.numberOfParticles()) {
@@ -509,12 +444,10 @@ class Drawer  {
           float ZERO = textWidth(usrSub);
           textSize(nHold2[i]);
           Integer retIT = (Integer)findMap2.get(i);
-          //println(retIT);
-          //println(tMaprray);
           runPre = datavis2.getParticle(retIT);
           getMeCol(tMaprray2[i]);
 
-          text(tString2[i], runPre.position().x() - ZERO , runV.position().y());
+          text(tString2[i], runPre.position().x() - ZERO, runV.position().y());
           textSize(nHold2[i]);
           stroke(255,hit);
           if (i == 1) {
@@ -528,13 +461,11 @@ class Drawer  {
             line(runPre.position().x() - ZERO,start_p2[0],runV.position().x() - ZERO,runV.position().y());
             float nadd = textAscent();
 
-            //numbers
             fill(255);
             textAlign(CENTER,CENTER);
             textSize(.4);
             text(i,runPre.position().x() - ZERO,start_p2[1] + nadd/2);
-            textAlign(RIGHT,TOP);  
-
+            textAlign(RIGHT,TOP);
           }
           else {
             textSize(nHold2[i]);
@@ -548,12 +479,11 @@ class Drawer  {
             line(runPre.position().x() - ZERO,start_p2[i],runV.position().x() - ZERO,runV.position().y());
             float nadd = textAscent();
 
-            //numbers
             fill(255);
             textAlign(CENTER,CENTER);
             textSize(.4);
             text(i,runPre.position().x() - ZERO,start_p2[i] + nadd/2);
-            textAlign(RIGHT,TOP);  
+            textAlign(RIGHT,TOP);
           }
         }
       }
@@ -575,8 +505,7 @@ class Drawer  {
         findMap2.put(datavis2.numberOfParticles() - 1,node_counter2);
         nodePre = datavis2.getParticle(node_counter2);
         textSize(nHold2[i]);
-        // println(nodePre.position().x() - textWidth(tString2[i]));
-        node.position().set(nodePre.position().x() - textWidth(tString2[i]) ,nodePre.position().y(),0);
+        node.position().set(nodePre.position().x() - textWidth(tString2[i]),nodePre.position().y(),0);
         pTemp2.add(node);
         makeJoint(datavis2,nodePre,node,S_STRENGTH,S_DAMP,textWidth(tString2[i]));
         node_counter2++;
@@ -598,7 +527,7 @@ class Drawer  {
             textSize(nHold2[i - 1]);
             float rest = textAscent();
             textSize(nHold2[i]);
-            node.position().set(nodePre.position().x() - textWidth(tString2[i]) ,prev.position().y() + rest + 0.3,0);
+            node.position().set(nodePre.position().x() - textWidth(tString2[i]),prev.position().y() + rest + 0.3,0);
             makeJoint(datavis2,nodePre,node,S_STRENGTH,S_DAMP, textWidth(tString2[i]));
             pTemp2.remove(pTemp2.size() - 1);
             pTemp2.add(node);
@@ -606,11 +535,9 @@ class Drawer  {
           else {
             Particle prev= (Particle)(pTemp2.get(pTemp2.size() - 1));
             Particle up = datavis2.getParticle((Integer)q.get(i));
-            //println((Integer)q.get(i));
             textSize(nHold2[(Integer)q.get(i)]);
             float rest = textAscent();
             textSize(nHold2[i]);
-            //println(rest + "," + textAscent());
             if (prev.position().y() > up.position().y() + rest) {
               node.position().set(nodePre.position().x() - textWidth(tString2[i]),prev.position().y() + 0.3,0);
             }
@@ -637,24 +564,12 @@ class Drawer  {
   }
 
 
-
-  //  void mouseMoved() {
-  //    if (mouseX > width - 10.0 || mouseY > height - 10.0 || mouseX < 10.0 || mouseY < 10.0 || mouseX == 0 || mouseY == 0) {
-  //      println("Yeah");
-  //      camera(width/2.0, height/2.0, (height/2.0) / tan(PI*60.0 / 360.0), width/2, height/2.0, 0, 0, 1, 0);
-  //    }
-  //    else
-  //      camera(mouseX, height/2.0,mouseY, mouseX, height/2.0, 0, 0, 1, 0);
-  //
-  //    println(mouseX + "," + mouseY);
-  //  }
-
   void mouseReleased() {
     hit = 0;
   }
 
   void mousePressed() {
-    hit = 255; 
+    hit = 255;
   }
 
 
@@ -669,16 +584,11 @@ class Drawer  {
           count++;
         }
         else if (maxer[j] == maxer[i]) {
-          break; 
+          break;
         }
       }
       nB[i] = count;
-      count = 0;  
-    }
-
-    for (int t = 1; t < nB.length; t++) {
-      //      if (nB[t] == 1)
-      //        nB[t] = 0; 
+      count = 0;
     }
 
     int sum = 0;
@@ -686,21 +596,20 @@ class Drawer  {
       sum = nB[each];
       for (int k = each + 1; k < maxer.length; k++) {
         if (maxer[k] <= maxer[each]) {
-          break; 
+          break;
         }
         else {
-          sum += nB[k]; 
+          sum += nB[k];
         }
       }
       if (sum == 0) {
         nH[each] = 1;
       }
       else if (sum == 1) {
-        //println("roro");
-        nH[each] = 2; 
+        nH[each] = 2;
       }
       else {
-        nH[each] = sum + 2; 
+        nH[each] = sum + 2;
       }
       sum = 0;
     }
@@ -774,7 +683,6 @@ class Drawer  {
         r1.put(counter,minIT);
       }
     }
-    //println(r1);
     return r1;
   }
 
@@ -801,7 +709,6 @@ class Drawer  {
       bc = ev1 * num/2;
     else
       bc = 2 + num;
-    //println(num +"," +rc+","+ev1);
     fill(rc,gc,bc);
   }
 
@@ -859,7 +766,6 @@ class Drawer  {
     keymap.put("V","Am");
     keymap.put("W","A#m");
     keymap.put("X","Bm");
-    //println(keymap);
   }
 
   String[] Xchange(String[] tList) {
@@ -909,8 +815,6 @@ class Drawer  {
     buffer = buffer.reverse();
     String reverseString = buffer.toString(); 
     return reverseString;
-    //println(test);
-    //println(reverseString);
   }
 
   void readMe() {
@@ -926,849 +830,5 @@ class Drawer  {
     saveStrings("pathLeft.txt",pathL);
     saveStrings("pathRight.txt",pathR);
   }
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
