@@ -13,6 +13,6 @@ However, the basics are this:
 
 > 3. the chosen pattern becomes the root for a visualization that bifurcates from the left and right of it, clustering the rest of the chords (textual strings) into lexicographically arranged subsequences/substrings. This visual representation aims to show the harmonic variations of the data with the user’s keychord (like keyword) acting as the parent that all the other substrings (offspring) must share. The visual itself is text-based, depicting chords as their letter components. Parts 2 and 3 work in real-time.
 
-![Screenshot](https://github.com/lscmoscar/zeeshans_thesis/raw/master/Screenshot.jpg)
+![Screenshot](https://github.com/zeeshanlakhani/zeeshans_thesis/raw/master/Screenshot.jpg)
 
 ##### I apologize ahead of time for any chaotic or bad code!
