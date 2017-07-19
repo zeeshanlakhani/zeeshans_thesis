@@ -6,7 +6,7 @@ This repository contains the original code (completed in [Processing](http://pro
 #### All external .jars used (in the build path) are located in Java app folders (for either linux, mac, or windows). 
 #### The main application code exists in the *text_search_yes* folder. The .pde file in *echonest_reduc* was used to get the beats (and beat times) of each track via the [Echonest API](http://developer.echonest.com/docs/v4/) and [this processing library](http://code.google.com/p/echonestp5/).
 
-### [Read/Download Thesis Paper](http://dl.dropbox.com/u/13241544/Zeeshan_Thesis_Done_1_15_2010.pdf)
+### [Read/Download Thesis Paper](https://www.dropbox.com/s/qjvlj5avi0lnk77/Zeeshan_Thesis_Done_1_15_2010.pdf?dl=0)
 
 However, the basics are this:
 > 1. An offline database of chordal material (12 major and 12 minor chords), accumulated via the extraction of chroma features and the use of Hidden Markov Models from a set of remixes *(specifically, the examples used in this thesis consisted of [Nine Inch Nails remixes](http://remix.nin.com/) of two songs)* that pertain to one original track in this case. This database is linked to via... 
